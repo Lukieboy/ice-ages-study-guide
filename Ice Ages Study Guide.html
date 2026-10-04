@@ -1,0 +1,939 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Ice Ages Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky chapter index on the left (wide screens), one reading column; each chapter is a "core section" with a date tag, people, concepts and a status chip for the astronomical theory. */
+:root{
+  --bg:#f3f6f7;
+  --paper:#ffffff;
+  --ink:#16232b;
+  --muted:#53646e;
+  --line:#d5dfe3;
+  --glacier:#1d5f7c;
+  --glacier-soft:#e2eef3;
+  --ochre:#9a6512;
+  --ochre-soft:#f6ecdc;
+  --good:#2f7a4b; --good-soft:#e1f1e6;
+  --warn:#9a6512; --warn-soft:#f6ecdc;
+  --bad:#a23b32; --bad-soft:#f6e3e0;
+  --idle:#6b7a83; --idle-soft:#e8edef;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Literata", Georgia, "Times New Roman", serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f171c; --paper:#16222a; --ink:#e3ecef; --muted:#9fb1ba; --line:#2a3a44;
+  --glacier:#7cc0dc; --glacier-soft:#16313d; --ochre:#e0ad5c; --ochre-soft:#33281a;
+  --good:#7fcf9b; --good-soft:#17321f; --warn:#e0ad5c; --warn-soft:#33281a;
+  --bad:#ef8f86; --bad-soft:#3a1d1a; --idle:#a3b2ba; --idle-soft:#24323a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f171c; --paper:#16222a; --ink:#e3ecef; --muted:#9fb1ba; --line:#2a3a44;
+  --glacier:#7cc0dc; --glacier-soft:#16313d; --ochre:#e0ad5c; --ochre-soft:#33281a;
+  --good:#7fcf9b; --good-soft:#17321f; --warn:#e0ad5c; --warn-soft:#33281a;
+  --bad:#ef8f86; --bad-soft:#3a1d1a; --idle:#a3b2ba; --idle-soft:#24323a; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65;padding-inline:16px;padding-block:0 64px}
+a{color:var(--glacier)}
+a:focus-visible{outline:2px solid var(--glacier);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px}
+@media (max-width:900px){.wrap{grid-template-columns:minmax(0,1fr);gap:0}.toc{display:none}}
+
+/* index */
+.toc{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;max-height:100vh;overflow:auto;padding-block:32px;font-family:var(--display);font-size:13.5px}
+.toc h2{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
+.toc ol{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:2px}
+.toc a{display:grid;grid-template-columns:28px 1fr;gap:6px;text-decoration:none;color:var(--ink);padding:3px 6px;border-radius:4px}
+.toc a:hover{background:var(--glacier-soft)}
+.toc a span:first-child{font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+main{min-width:0;padding-block:32px}
+header.hero{padding-block:16px 28px;border-bottom:1px solid var(--line);margin-bottom:32px}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--glacier);margin:0 0 10px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2rem,4.5vw,3.1rem);line-height:1.08;margin:0 0 14px;text-wrap:balance;letter-spacing:-.01em}
+.lede{font-size:1.1rem;max-width:62ch;color:var(--ink);margin:0 0 10px}
+.small{font-size:.92rem;color:var(--muted);max-width:66ch}
+
+h2.part{font-family:var(--display);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ochre);margin:56px 0 6px}
+h2.sec{font-family:var(--display);font-weight:700;font-size:1.7rem;line-height:1.2;margin:8px 0 14px;text-wrap:balance}
+p{margin:0 0 14px;max-width:68ch}
+.prose{max-width:68ch}
+
+/* three questions */
+.qs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 8px}
+@media (max-width:760px){.qs{grid-template-columns:minmax(0,1fr)}}
+.q{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:16px}
+.q b{display:block;font-family:var(--display);font-size:1.02rem;margin-bottom:4px}
+.q span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.q p{font-size:.95rem;margin:6px 0 0}
+
+/* fortunes bar */
+.fortune{margin:20px 0 6px;background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:18px}
+.fortune h3{font-family:var(--display);font-size:1.05rem;margin:0 0 4px}
+.bar{display:flex;height:34px;border-radius:4px;overflow:hidden;margin:14px 0 6px}
+.bar div{min-width:0}
+.axis{display:flex;font-family:var(--mono);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.axis span{min-width:0}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px 18px;margin-top:14px;font-size:.88rem}
+.legend div{display:grid;grid-template-columns:14px 1fr;gap:8px;align-items:start}
+.legend i{width:14px;height:14px;border-radius:3px;margin-top:4px}
+.s-prop{background:var(--glacier)}
+.s-good{background:var(--good)}
+.s-warn{background:var(--warn)}
+.s-bad{background:var(--bad)}
+.s-idle{background:var(--idle);opacity:.55}
+
+/* master timeline */
+.tl{border-left:2px solid var(--line);margin:18px 0 0 6px;padding-left:0;list-style:none}
+.tl li{position:relative;padding:0 0 12px 22px;max-width:72ch}
+.tl li::before{content:"";position:absolute;left:-6px;top:9px;width:10px;height:10px;border-radius:50%;background:var(--paper);border:2px solid var(--glacier)}
+.tl li.key::before{background:var(--glacier)}
+.tl time{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--glacier);font-variant-numeric:tabular-nums;margin-right:8px}
+.tl .era{font-family:var(--display);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ochre);padding:14px 0 8px 22px}
+.tl .era::before{display:none}
+
+/* chapter */
+article.ch{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:28px clamp(18px,3.5vw,36px);margin:22px 0;scroll-margin-top:16px}
+.chhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;margin-bottom:6px}
+.chnum{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.when{font-family:var(--mono);font-size:12.5px;background:var(--glacier-soft);color:var(--glacier);padding:2px 8px;border-radius:3px;font-variant-numeric:tabular-nums}
+article.ch h3{font-family:var(--display);font-weight:700;font-size:1.55rem;line-height:1.2;margin:2px 0 8px;text-wrap:balance}
+.question{font-style:italic;color:var(--muted);margin-bottom:16px}
+.status{display:inline-flex;align-items:center;gap:7px;font-family:var(--display);font-size:12.5px;font-weight:500;padding:3px 10px 3px 8px;border-radius:999px;margin:0 0 16px}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
+.st-good{color:var(--good);background:var(--good-soft)}
+.st-warn{color:var(--warn);background:var(--warn-soft)}
+.st-bad{color:var(--bad);background:var(--bad-soft)}
+.st-idle{color:var(--idle);background:var(--idle-soft)}
+.st-prop{color:var(--glacier);background:var(--glacier-soft)}
+
+.cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:18px}
+@media (max-width:760px){.cols{grid-template-columns:minmax(0,1fr)}}
+.box{border-top:2px solid var(--line);padding-top:10px;min-width:0}
+.box h4{font-family:var(--display);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px;color:var(--muted)}
+.box.people h4{color:var(--ochre)}
+.box.people{border-top-color:var(--ochre)}
+.box.concepts h4{color:var(--glacier)}
+.box.concepts{border-top-color:var(--glacier)}
+dl{margin:0;display:grid;gap:8px;font-size:.93rem;line-height:1.5}
+dt{font-family:var(--display);font-weight:700;font-size:.95rem}
+dd{margin:0;color:var(--ink)}
+.take{margin-top:18px;padding:12px 14px;background:var(--ochre-soft);border-radius:5px;font-size:.95rem;max-width:none}
+.take b{font-family:var(--display);color:var(--ochre);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-right:6px}
+
+/* tables */
+.tablewrap{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:6px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;font-size:.92rem;min-width:560px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.gloss{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 28px;margin-top:14px}
+@media (max-width:760px){.gloss{grid-template-columns:minmax(0,1fr)}}
+.gloss div{border-bottom:1px solid var(--line);padding-bottom:8px;font-size:.93rem}
+.gloss b{font-family:var(--display)}
+
+.note{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--glacier);border-radius:6px;padding:16px 18px;margin:14px 0}
+.note h4{font-family:var(--display);margin:0 0 6px;font-size:1.02rem}
+.note p{font-size:.95rem;margin-bottom:8px}
+.note p:last-child{margin-bottom:0}
+footer{margin-top:40px;font-size:.88rem;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="Chapters">
+  <h2>Start here</h2>
+  <ol>
+    <li><a href="#overview"><span>·</span><span>The big picture</span></a></li>
+    <li><a href="#timeline"><span>·</span><span>Master timeline</span></a></li>
+    <li><a href="#orbit"><span>·</span><span>Orbital cycles primer</span></a></li>
+  </ol>
+  <h2>Part I · Discovered</h2>
+  <ol>
+    <li><a href="#prologue"><span>P</span><span>The Forgotten Ice Age</span></a></li>
+    <li><a href="#ch1"><span>1</span><span>Agassiz &amp; the Glacial Theory</span></a></li>
+    <li><a href="#ch2"><span>2</span><span>Triumph of the Glacial Theory</span></a></li>
+    <li><a href="#ch3"><span>3</span><span>Exploring the Ice-Age World</span></a></li>
+  </ol>
+  <h2>Part II · Explained</h2>
+  <ol>
+    <li><a href="#ch4"><span>4</span><span>The Ice-Age Problem</span></a></li>
+    <li><a href="#ch5"><span>5</span><span>Birth of the Astronomical Theory</span></a></li>
+    <li><a href="#ch6"><span>6</span><span>James Croll</span></a></li>
+    <li><a href="#ch7"><span>7</span><span>Debate Over Croll</span></a></li>
+    <li><a href="#ch8"><span>8</span><span>Distant Worlds and Times</span></a></li>
+    <li><a href="#ch9"><span>9</span><span>The Milankovitch Controversy</span></a></li>
+    <li><a href="#ch10"><span>10</span><span>The Deep and the Past</span></a></li>
+    <li><a href="#ch11"><span>11</span><span>Pleistocene Temperatures</span></a></li>
+    <li><a href="#ch12"><span>12</span><span>Milankovitch Revival</span></a></li>
+    <li><a href="#ch13"><span>13</span><span>Signal from the Earth</span></a></li>
+    <li><a href="#ch14"><span>14</span><span>Pulsebeat of Climate</span></a></li>
+    <li><a href="#ch15"><span>15</span><span>Pacemaker of the Ice Ages</span></a></li>
+  </ol>
+  <h2>Part III · Future</h2>
+  <ol>
+    <li><a href="#ch16"><span>16</span><span>The Coming Ice Age</span></a></li>
+    <li><a href="#epilogue"><span>E</span><span>Last Billion Years</span></a></li>
+  </ol>
+  <h2>Reference</h2>
+  <ol>
+    <li><a href="#glossary"><span>·</span><span>Key concepts glossary</span></a></li>
+    <li><a href="#modern"><span>·</span><span>Reading it in 2026</span></a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="hero">
+  <p class="eyebrow">Study guide · GEOG 205 · Imbrie &amp; Imbrie (1979)</p>
+  <h1>Ice Ages: Solving the Mystery, chapter by chapter</h1>
+  <p class="lede">How scientists worked out, over about 140 years, that ice ages happened, that there were many of them, and that they are paced by slow changes in Earth's orbit. Each chapter below names the people, the theories they proposed, and the geological ideas you need to follow the argument.</p>
+  <p class="small">The book was written by John Imbrie (himself one of the scientists in Chapters 11–15) and Katherine Palmer Imbrie, and finished in June 1978. Everything in the chapter summaries reflects the book. Updates from later research are kept separate, in <a href="#modern">Reading it in 2026</a>.</p>
+</header>
+
+<section id="overview">
+  <h2 class="part">The big picture</h2>
+  <h2 class="sec">One mystery, three questions</h2>
+  <p>The book follows the three questions it is organized around. Each one needed new kinds of evidence before it could be answered, and the answers came roughly in this order.</p>
+  <div class="qs">
+    <div class="q"><span>Part I · 1787–1875</span><b>Did an ice age happen?</b><p>Erratic boulders, scratched bedrock and moraines were first blamed on Noah's flood. Swiss naturalists, then Agassiz, argued for vast ancient glaciers. By the 1860s geologists agreed, and by 1875 they had mapped the ice and shown there were several ice ages.</p></div>
+    <div class="q"><span>Part II · 1837–1976</span><b>What caused them?</b><p>Of many theories, one could actually be tested: the astronomical theory (Adhemar, Croll, Milankovitch). It rose and fell three times. Deep-sea cores, new dating methods and magnetic reversals finally confirmed it in 1976.</p></div>
+    <div class="q"><span>Part III · the future</span><b>When is the next one?</b><p>The orbital theory predicts a slow slide toward full glaciation in about 23,000 years. Carbon dioxide from fossil fuels is likely to interrupt that with a warm "super-interglacial".</p></div>
+  </div>
+
+  <div class="fortune">
+    <h3>The fortunes of the astronomical theory, 1842–1976</h3>
+    <p class="small" style="margin:0">The thread that runs through Part II. Bar widths are to scale in years. Each chapter below carries a chip showing where the theory stands at that point in the story.</p>
+    <div class="bar" role="img" aria-label="Timeline bar of the astronomical theory's status from 1842 to 1976">
+      <div class="s-prop" style="flex:10" title="1842–1852 Adhemar proposes"></div>
+      <div class="s-idle" style="flex:12" title="1852–1864 refuted, dormant"></div>
+      <div class="s-warn" style="flex:30" title="1864–1894 Croll's version debated"></div>
+      <div class="s-idle" style="flex:26" title="1894–1920 rejected, forgotten"></div>
+      <div class="s-good" style="flex:30" title="1920–1950 Milankovitch widely accepted in Europe"></div>
+      <div class="s-bad" style="flex:15" title="1950–1965 rejected after radiocarbon"></div>
+      <div class="s-good" style="flex:11" title="1965–1976 revival and confirmation"></div>
+    </div>
+    <div class="axis" aria-hidden="true">
+      <span style="flex:22">1842</span><span style="flex:30">1864</span><span style="flex:26">1894</span><span style="flex:30">1920</span><span style="flex:15">1950</span><span style="flex:11">1965 → 1976</span>
+    </div>
+    <div class="legend">
+      <div><i class="s-prop"></i><span>Proposed (Adhemar, 1842)</span></div>
+      <div><i class="s-idle"></i><span>Refuted or forgotten</span></div>
+      <div><i class="s-warn"></i><span>Taken seriously, hotly debated (Croll)</span></div>
+      <div><i class="s-good"></i><span>Accepted or gaining ground (Milankovitch; revival)</span></div>
+      <div><i class="s-bad"></i><span>Rejected by most geologists (radiocarbon era)</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="timeline">
+  <h2 class="part">Master timeline</h2>
+  <h2 class="sec">Who did what, in order</h2>
+  <p>Filled dots mark turning points. The chapter where each event is discussed is in brackets.</p>
+  <ol class="tl">
+    <li class="era">Before the glacial theory</li>
+    <li><time>1706</time>A mastodon tooth from New York is judged to be a drowned giant from Noah's flood [2]</li>
+    <li><time>1726</time>Scheuchzer publishes "The Man Who Witnessed the Flood" (later shown by Cuvier to be a giant salamander) [2]</li>
+    <li><time>1754</time>d'Alembert explains axial precession as the sun's and moon's pull on Earth's equatorial bulge [5]</li>
+    <li><time>1787–1832</time>Kuhn, Hutton (1794), Esmark (1824), Bernhardi (1832) each suggest erratics were left by ancient glaciers; nobody listens [1]</li>
+    <li class="era">Part I · The glacial theory wins</li>
+    <li><time>1815</time>Mountaineer Jean-Pierre Perraudin concludes glaciers once filled the whole Val de Bagnes [1]</li>
+    <li><time>1823</time>Buckland's <i>Reliquiae Diluvianae</i> defends the Flood as the cause of the "diluvium" [2]</li>
+    <li><time>1829</time>Venetz tells the Swiss Society that glaciers once covered the Swiss plain and beyond [1]</li>
+    <li><time>1833</time>Lyell's iceberg/ice-raft version of the flood theory gives "drift" its name [1, 2]</li>
+    <li><time>1834</time>de Charpentier presents the glacial theory at Lucerne; Agassiz is in the audience, unconvinced [1]</li>
+    <li><time>1836</time>A summer at Bex with de Charpentier and Venetz converts Agassiz [1]</li>
+    <li class="key"><time>1837</time>Agassiz's "Discourse of Neuchâtel": a great Ice Age (<i>Eiszeit</i>, Schimper's word) [1]</li>
+    <li><time>1840</time>Agassiz's <i>Studies on Glaciers</i>; Buckland converted in Scotland, then Lyell [2]</li>
+    <li><time>1841</time>Maclaren: building the ice sheets must have lowered sea level (~800 ft) [3]</li>
+    <li><time>1846–47</time>Agassiz moves to America and takes a Harvard professorship [2]</li>
+    <li><time>1852</time>Greenland shown to carry a true ice sheet [2]</li>
+    <li><time>1863</time>Archibald Geikie: plant remains between Scottish tills show more than one ice age [3]</li>
+    <li><time>1865</time>Jamieson: ice sheets pressed the land down (isostasy); Croll explains "shelly drift" [2, 3]</li>
+    <li><time>mid-1860s</time>Glacial theory established on both sides of the Atlantic [2]</li>
+    <li><time>1868</time>Whittlesey estimates ice-age sea level 350–400 ft lower [3]</li>
+    <li><time>1870s</time>Von Richthofen explains loess as wind-blown; Gilbert describes Lake Bonneville; Worthen finds buried soils between tills [3]</li>
+    <li class="key"><time>1875</time>Global map of the last ice age completed; a succession of ice ages accepted [3]</li>
+    <li class="era">Part II · Searching for a cause (starts in 1842, overlapping Part I)</li>
+    <li class="key"><time>1842</time>Adhemar, <i>Revolutions of the Sea</i>: first astronomical theory (precession) [5]</li>
+    <li><time>1843</time>Leverrier calculates past changes in Earth's orbit (100,000 years) [6]</li>
+    <li><time>1852</time>Von Humboldt shows each hemisphere receives the same yearly heat, which sinks Adhemar's version [5]</li>
+    <li class="key"><time>1864</time>Croll's astronomical theory: eccentricity + precession, winter is critical, positive feedback [6]</li>
+    <li><time>1874</time>James Geikie, <i>The Great Ice Age</i>, backs Croll [7]</li>
+    <li><time>1875</time>Croll, <i>Climate and Time</i>; HMS <i>Challenger</i> returns with deep-sea samples [6, 10]</li>
+    <li><time>1894</time>Dana: Niagara dates put the end of the ice age at ~10,000 years, not Croll's 80,000; Croll's theory fades [7]</li>
+    <li><time>1904</time>Pilgrim calculates eccentricity, tilt and precession for the past million years [8]</li>
+    <li><time>1906</time>Brunhes finds reversely magnetized lava [13]</li>
+    <li><time>1909</time>Penck &amp; Brückner: four Alpine ice ages, Günz–Mindel–Riss–Würm [9]</li>
+    <li><time>1920</time>Milankovitch, <i>Mathematical Theory of Heat Phenomena</i> [8]</li>
+    <li class="key"><time>1924</time>Köppen &amp; Wegener publish Milankovitch's summer radiation curves [8]</li>
+    <li><time>1929</time>Matuyama: Earth's magnetic field reversed during the Pleistocene [13]</li>
+    <li><time>1930–41</time>Eberl's terraces "match" the curves; Milankovitch's 1938 and 1941 (<i>Canon</i>) syntheses [8, 9]</li>
+    <li><time>1935</time>Schott reads climate from forams in short Atlantic cores [10]</li>
+    <li><time>1947</time>Urey's oxygen-isotope theory; Kullenberg's piston corer [10, 11]</li>
+    <li class="key"><time>1951</time>Libby's radiocarbon dating available; soon turns geologists against Milankovitch [9]</li>
+    <li><time>1952</time>Arrhenius finds calcium-carbonate cycles; Heezen &amp; Ewing explain turbidity currents [10]</li>
+    <li><time>1955</time>Emiliani, "Pleistocene Temperatures": isotope stages, supports Milankovitch [11]</li>
+    <li><time>1961</time>Ericson's menardii zones; Kukla &amp; Ložek read climate in Czech loess [10, 14]</li>
+    <li><time>1963</time>Cox, Doell &amp; Dalrymple: magnetic reversals are worldwide; paleomagnetic time scale [13]</li>
+    <li><time>1965</time>Radiocarbon chronologies leave Milankovitch with few supporters; Ericson–Emiliani conference [9, 11]</li>
+    <li class="key"><time>1968</time>Barbados reef terraces (82k, 105k, 125k yr) fit the theory if precession matters more: revival [12]</li>
+    <li><time>1968–70</time>Kukla (loess) and Broecker &amp; van Donk (cores) find a dominant 100,000-year cycle [14]</li>
+    <li><time>1969</time>Imbrie and Shackleton meet in Paris: isotopes record ice volume [11]</li>
+    <li><time>1971</time>CLIMAP begins; Hays &amp; Berggren date the Pleistocene base at 1.8 Myr [13, 15]</li>
+    <li class="key"><time>1973</time>Shackleton &amp; Opdyke publish core V28-238, the "Rosetta Stone": dated isotope stages [15]</li>
+    <li class="key"><time>1976</time>Hays, Imbrie &amp; Shackleton, "Pacemaker of the Ice Ages": the orbital cycles are found in the climate record [15]</li>
+  </ol>
+</section>
+
+<section id="orbit">
+  <h2 class="part">Primer</h2>
+  <h2 class="sec">The three orbital cycles</h2>
+  <p>You need these to follow Part II. None of them changes how much sunlight Earth gets in a whole year by more than a tiny amount. What they change is <em>where</em> (latitude) and <em>when</em> (season) the sunlight arrives. The central question of Chapters 5–15 is which season and latitude matter, and whether these small shifts can really drive ice sheets.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Cycle</th><th>What changes</th><th>Period (book's figures)</th><th>Climate effect</th><th>First used by</th></tr></thead>
+    <tbody>
+      <tr><td><b>Eccentricity</b></td><td>How stretched the elliptical orbit is. Today ~1%; ranges from near 0 to ~6%</td><td class="num">~100,000 yr</td><td>Barely changes yearly total. Controls how strongly precession can affect the seasons</td><td>Croll (1864), using Leverrier</td></tr>
+      <tr><td><b>Axial tilt</b> (obliquity)</td><td>Angle of Earth's axis, now 23½°, varying roughly 22°–25°</td><td class="num">41,000 yr</td><td>Less tilt means cooler polar summers. Strongest at high latitudes</td><td>Croll (1875) in principle; Milankovitch calculated it</td></tr>
+      <tr><td><b>Precession</b> of the equinoxes</td><td>Where on the orbit the solstices fall (is northern summer near or far from the sun?)</td><td class="num">~22,000 yr (23,000 and 19,000)</td><td>Shifts seasonal heating between hemispheres. Strongest at low latitudes</td><td>Adhemar (1842)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="small">Don't confuse two numbers: the axis itself wobbles once every 26,000 years (axial precession, known since Hipparchus). Combined with the slow turning of the orbit, the solstices and equinoxes complete their circuit in about 22,000 years. The 22,000-year figure is the one that matters for climate.</p>
+</section>
+
+<h2 class="part">Part I · Ice Age Discovered</h2>
+
+<article class="ch" id="prologue">
+  <div class="chhead"><span class="chnum">Prologue</span><span class="when">20,000 years ago → 1800s</span></div>
+  <h3>The Forgotten Ice Age</h3>
+  <p class="question">What did the world look like at the height of the last ice age, and why did people forget it?</p>
+  <p>The book opens with a picture of Earth 20,000 years ago. In North America, ice spread from centres near Hudson Bay to bury eastern Canada, New England and much of the Midwest under ice averaging more than a mile thick. A second sheet grew from the Canadian Rockies. In Europe, ice spread from Scandinavia and Scotland across Britain, Denmark, northern Germany, Poland and the western USSR, and a separate cap covered the Alps. In all, about 11 million square miles of land that is ice-free today was buried.</p>
+  <p>So much water was locked up in ice that sea level was 350 feet lower, exposing continental shelves, including a land corridor between Asia and North America. South of the ice lay a belt of treeless tundra, grazed by reindeer and mammoths. In Eurasia this gave way to semi-arid grassland stretching from France to Siberia, while eastern North America had spruce forest.</p>
+  <p>About 14,000 years ago the ice began to retreat, and within 7,000 years it had shrunk to its present limits (Greenland and some Arctic ice caps). The ice left a scraped and littered landscape: grooved bedrock and jumbled ridges of debris called <b>moraines</b>. Memory of the ice age faded, and by the 1700s geologists explained these deposits as debris from the biblical Flood. Only in the early 1800s did some begin to ask whether water could really move giant boulders hundreds of miles.</p>
+  <div class="cols">
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Ice sheet</dt><dd>A continent-scale glacier that spreads outward from a centre (here, near Hudson Bay or Scandinavia).</dd>
+      <dt>Glacial sea-level fall</dt><dd>Water in the ice comes from the ocean, so big ice sheets mean lower seas (about 350 ft at the peak).</dd>
+      <dt>Moraine</dt><dd>A chaotic ridge of rock debris carried by ice and dumped at its margin.</dd>
+    </dl></div>
+    <div class="box people"><h4>Ideas in place</h4><dl>
+      <dt>The Flood (diluvial) explanation</dt><dd>The default view in the 1700s: surface gravels and boulders were left by Noah's flood.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>The evidence of glaciation was always visible. The problem was interpretation, and the Flood was the ruling interpretation.</p>
+</article>
+
+<article class="ch" id="ch1">
+  <div class="chhead"><span class="chnum">Chapter 1</span><span class="when">1787 – 1837</span></div>
+  <h3>Louis Agassiz and the Glacial Theory</h3>
+  <p class="question">Who first realized glaciers had once been far larger, and how did the idea reach the scientific world?</p>
+  <p>The chapter opens on 26 July 1837, with geologists in carriages heading into the Jura mountains near Neuchâtel, Switzerland. Two days earlier, Louis Agassiz, the young president of the Swiss Society of Natural Sciences and already famous for his work on fossil fish, had shocked the meeting. Instead of fish, he talked about the scratched <b>erratic boulders</b> (rocks found far from where they came from) scattered across the Jura, and said they could only be explained by an ancient age of ice.</p>
+  <p>Agassiz was the last link in a chain. Several people had reached the idea independently and been ignored: the Swiss minister Bernard Kuhn (1787), James Hutton, often called the father of geology (1794), Jens Esmark in Norway (1824), and Reinhard Bernhardi in Germany, who in 1832 proposed a polar ice cap reaching central Germany. The accepted explanation at the time was Charles Lyell's (1833): erratics were carried by icebergs and ice rafts floating in the Flood.</p>
+  <p>The chain that reached Agassiz began with ordinary mountain people. <b>Jean-Pierre Perraudin</b>, a chamois hunter, noticed scars on hard rocks far below the glaciers and concluded by 1815 that glaciers once filled the whole Val de Bagnes. He told the naturalist <b>Jean de Charpentier</b>, who found the idea "so extravagant" he dismissed it. The highway engineer <b>Ignace Venetz</b> listened instead. After years of caution, in 1829 Venetz argued that immense glaciers had spread from the Alps across the Swiss plain and beyond. The meeting rejected it, but de Charpentier now came round and spent 1829–1833 organizing the evidence. When he presented it at Lucerne in 1834, it was rejected again, and Agassiz was among the doubters. (On his way there de Charpentier met a woodcutter who calmly explained that the Grimsel glacier had once reached Bern.)</p>
+  <p>In 1836 Agassiz spent the summer at Bex intending to show de Charpentier he was wrong, and was converted within weeks. He then went further than his mentors: a single huge polar ice sheet had covered Europe to the Mediterranean and much of North America. He borrowed the word <i>Eiszeit</i> ("ice age") from the botanist <b>Karl Schimper</b>. This extended version went beyond the evidence and offended de Charpentier. The 1837 "Discourse of Neuchâtel" was hastily written and nearly everyone present rejected it. Élie de Beaumont and Leopold von Buch led the opposition, and Alexander von Humboldt advised Agassiz to go back to fossil fish. But from then on the glacial theory could not be ignored, and Agassiz's <i>Studies on Glaciers</i> (1840) pressed it further.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>Jean-Pierre Perraudin</dt><dd>Mountaineer; first to argue (1815) from rock scars that valley glaciers had been much larger.</dd>
+      <dt>Ignace Venetz</dt><dd>Engineer; took up Perraudin's idea; 1829 claim of Alpine glaciers covering much of Europe.</dd>
+      <dt>Jean de Charpentier</dt><dd>Organized and classified the evidence (1829–34). Careful, not a campaigner.</dd>
+      <dt>Louis Agassiz</dt><dd>Converted in 1836; the forceful spokesman. Proposed the Ice Age in 1837, overstated its extent.</dd>
+      <dt>Karl Schimper</dt><dd>Botanist who coined <i>Eiszeit</i>.</dd>
+      <dt>Charles Lyell</dt><dd>Leading British geologist; his 1833 iceberg-drift theory was the orthodoxy Agassiz challenged.</dd>
+      <dt>Kuhn, Hutton, Esmark, Bernhardi</dt><dd>Early, independent, ignored proponents of former glaciation.</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Erratic boulder</dt><dd>A rock lying far from the bedrock it came from; key evidence for transport by ice.</dd>
+      <dt>Glacial striations / polish</dt><dd>Scratches and polish on bedrock made by stones frozen into moving ice.</dd>
+      <dt>Glacial theory</dt><dd>The idea that much larger glaciers once covered lands that are ice-free today.</dd>
+      <dt>Ice-raft (iceberg) theory</dt><dd>Lyell's rival idea that boulders drifted in icebergs on flood waters.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>The theory came from field observation by local people, was systematized by de Charpentier and was publicized, with exaggerations, by Agassiz. Its acceptance depended as much on persuasion as on evidence.</p>
+</article>
+
+<article class="ch" id="ch2">
+  <div class="chhead"><span class="chnum">Chapter 2</span><span class="when">1706 – 1865 (last opponent 1905)</span></div>
+  <h3>The Triumph of the Glacial Theory</h3>
+  <p class="question">Why did the glacial theory meet so much resistance, and how was it won?</p>
+  <p>The ruling philosophy was <b>catastrophism</b>: Earth's history was a series of epochs, each ended by a catastrophe that destroyed life, and the most recent catastrophe was Noah's Flood. It explained fossils without contradicting the Bible. Examples: in 1706 a mastodon tooth was declared the tooth of a giant drowned in the Flood, and Scheuchzer's "man who witnessed the Flood" turned out (per Cuvier) to be a giant salamander. Agassiz was a catastrophist too. He replaced the flood with ice, but kept the catastrophe.</p>
+  <p>The key figure to win over was the Reverend <b>William Buckland</b> of Oxford, England's most respected geologist and a committed diluvialist. In 1821 he studied a cave in Yorkshire full of hyena, lion, elephant and hippo bones, decided it was a pre-Flood hyena den, and dated the Flood to 5,000–6,000 years ago (<i>Reliquiae Diluvianae</i>, 1823). Yet Buckland admitted that neither the flood theory nor Lyell's iceberg theory explained everything. Huge erratics, scratched bedrock and the unsorted nature of the "drift" were puzzles, and floating boulders to high mountains would require sea level to rise more than 5,000 feet.</p>
+  <p>Agassiz showed Buckland the Swiss evidence in 1838 without lasting success. In autumn 1840, after Agassiz's talk at Glasgow and a field trip through Scotland and northern England (with Roderick Murchison, who never converted), Buckland finally accepted the theory. He then showed Lyell moraines two miles from Lyell's father's house, and Lyell "adopted your theory <i>in toto</i>." At the Geological Society of London in November 1840, all three argued for glaciers. The audience was still hostile, and it took about 20 more years for most British geologists to agree.</p>
+  <p>The authors give four reasons for the slow acceptance:</p>
+  <ul class="prose">
+    <li>Geologists knew the sea had flooded the land many times, so a marine origin for drift seemed natural.</li>
+    <li>Some drift held seashells ("shelly drift"). <b>James Croll</b> explained this in 1865: ice sheets crossing shallow seas scraped up shells and mud.</li>
+    <li>Few geologists knew glaciers well. Greenland's ice sheet was only established in 1852, Antarctica's size later still. Mountain geologists accepted the idea faster than lowlanders.</li>
+    <li>Agassiz kept exaggerating: ice reaching the Mediterranean (1837), then filling the Amazon valley (1865). Lyell wrote that Agassiz had "gone wild about glaciers".</li>
+  </ul>
+  <p>Agassiz moved to America in 1846, found glacial polish at Halifax the moment he landed, and became a Harvard professor in 1847. Americans such as <b>Timothy Conrad</b> (1839) and <b>Edward Hitchcock</b> (1841) had already applied his ideas. By the mid-1860s the glacial theory was established on both sides of the Atlantic. The last serious attack, Sir Henry Howorth's, came in 1905.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>William Buckland</dt><dd>Oxford diluvialist; converted in 1840 and became the first major British supporter.</dd>
+      <dt>Charles Lyell</dt><dd>Converted by Buckland in October 1840; later a critic of Agassiz's excesses.</dd>
+      <dt>Roderick Murchison</dt><dd>Stayed loyal to iceberg drift all his life.</dd>
+      <dt>Georges Cuvier</dt><dd>French anatomist; corrected Scheuchzer's "Flood man".</dd>
+      <dt>Charles Darwin</dt><dd>Saw boulder-carrying icebergs on the Beagle (1839), which seemed to support Lyell.</dd>
+      <dt>Timothy Conrad, Edward Hitchcock</dt><dd>Early American adopters.</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Catastrophism</dt><dd>Earth's history as a series of sudden, worldwide catastrophes.</dd>
+      <dt>Diluvium</dt><dd>The diluvialists' term for surface gravels, sand, clay and boulders believed to be left by the Flood.</dd>
+      <dt>Drift</dt><dd>Lyell's followers' name for the same deposits, implying they drifted in on icebergs. The term stuck.</dd>
+      <dt>Shelly drift</dt><dd>Glacial deposit containing marine shells; Croll showed ice scraped them from the sea floor.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>Acceptance took about 30 years and required converting the leading authorities. Scientific orthodoxy was a bigger obstacle than religion.</p>
+</article>
+
+<article class="ch" id="ch3">
+  <div class="chhead"><span class="chnum">Chapter 3</span><span class="when">1841 – 1875</span></div>
+  <h3>Exploring the Ice-Age World</h3>
+  <p class="question">Once geologists accepted the ice age, what did they learn about it?</p>
+  <p>Victorian wealth and national geological surveys (the U.S. Geological Survey was created in 1879) sent geologists into the field. They first studied how living glaciers work. Snow piles up, and once it is thicker than about 100 feet the bottom layers turn to ice that flows downhill, grinding the bed like a file. A glacier's size is set by its <b>snow budget</b>: if more snow falls than melts it grows, otherwise it shrinks until it reaches a new balance. Even a glacier whose edge stays put is always flowing forward. Where melting exceeds snowfall it plasters debris beneath it (<b>lodgement till</b>). When it stagnates and melts in place, it drops <b>ablation till</b> on top, and meltwater carries the rest away as layered <b>outwash</b>. That mix of unsorted till and sorted outwash is why the "drift" had confused Buckland.</p>
+  <p>With this knowledge they mapped the ice. In North America the <b>terminal moraine</b> runs as a ridge (up to 150 ft high) from Long Island to Washington State, with till to the north and outwash plains to the south (T. C. Chamberlin drew the first map of North America in the ice age, 1891). Striations and erratics traced back to their source showed which way the ice flowed. By 1875 there was a global map. Ice had covered about 17 million square miles, three times today's area. In the northern hemisphere it covered about 13 times today's area, while Antarctica barely grew. They also found that the ice came from several separate centres, such as the <b>Laurentide Ice Sheet</b> centred near Hudson Bay, and not from one polar cap as Agassiz had claimed.</p>
+  <p>Effects beyond the ice were worked out too:</p>
+  <ul class="prose">
+    <li><b>Sea level:</b> Charles Maclaren (1841) realized the ice must have come from the ocean and estimated an 800 ft fall. Charles Whittlesey (1868), using ice thickness of about a mile measured from partly buried mountains like Monadnock, estimated 350–400 ft, close to modern figures. Lower seas created land bridges, including the route by which people first reached North America.</li>
+    <li><b>Isostasy:</b> Thomas Jamieson (1865) noticed raised marine shells in Scotland and Scandinavia and proposed that the weight of the ice pushed the crust down into a fluid layer below. After the ice melted the sea flooded in at once, then the land slowly rebounded. Land around Lake Superior is still rising about 15 inches per century.</li>
+    <li><b>Loess:</b> Ferdinand von Richthofen (1870) showed this fine yellow silt was blown by wind from bare outwash plains in front of the ice. It is the basis of the fertile soils of the American Midwest.</li>
+    <li><b>Wetter West:</b> Howard Stansbury (1852) saw old shorelines above Great Salt Lake. Grove Karl Gilbert (1870s) showed it is the remnant of the vast <b>Lake Bonneville</b>, so the American West was wetter during the ice age (a "pluvial" lake).</li>
+  </ul>
+  <p>The biggest discovery was that there had been <b>more than one ice age</b>. Collomb (1847) found two tills in the Vosges, but the layers between could mean a minor retreat. Archibald Geikie (1863) argued that plant fragments between Scottish tills showed warm intervals. Amos Worthen (early 1870s) found a rich soil buried between tills in Illinois, and Newberry and McGee found a buried forest between two tills. Soils and forests need warm climates, so warm <b>interglacials</b> had separated ice ages.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>Charles Maclaren</dt><dd>First to link ice volume to sea-level fall (1841).</dd>
+      <dt>Charles Whittlesey</dt><dd>First realistic sea-level estimate, 350–400 ft (1868).</dd>
+      <dt>Thomas Jamieson</dt><dd>Crust depressed by ice weight (1865); the idea behind isostasy.</dd>
+      <dt>Ferdinand von Richthofen</dt><dd>Loess is wind-blown (1870).</dd>
+      <dt>Grove Karl Gilbert</dt><dd>Lake Bonneville; wetter ice-age West.</dd>
+      <dt>Archibald Geikie, Amos Worthen, Newberry &amp; McGee</dt><dd>Evidence for multiple ice ages.</dd>
+      <dt>T. C. Chamberlin</dt><dd>First ice-age map of North America.</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Snow budget (mass balance)</dt><dd>Snowfall minus melting sets glacier size.</dd>
+      <dt>Lodgement vs ablation till</dt><dd>Till pressed under flowing ice vs till dropped as stagnant ice melts.</dd>
+      <dt>Outwash</dt><dd>Sorted, layered sediment from meltwater streams.</dd>
+      <dt>Terminal moraine</dt><dd>Ridge marking the farthest advance of the ice.</dd>
+      <dt>Isostatic depression and rebound</dt><dd>Crust sinks under ice and rises again after it melts.</dd>
+      <dt>Loess</dt><dd>Wind-blown glacial silt.</dd>
+      <dt>Interglacial</dt><dd>A warm interval between ice ages, like today.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>By 1875 the ice age was a mapped, measured reality, and there had been several. That set up the next question: what caused them?</p>
+</article>
+
+<h2 class="part">Part II · Explaining the Ice Ages</h2>
+
+<article class="ch" id="ch4">
+  <div class="chhead"><span class="chnum">Chapter 4</span><span class="when">Theories from 1830s to 1970s</span></div>
+  <h3>The Ice-Age Problem</h3>
+  <p class="question">What could make ice sheets grow and then shrink again, and how could any explanation be tested?</p>
+  <p>This chapter steps out of the chronology to set up the problem. Ice sheets are one part of a <b>climate system</b> of air, sea and ice, all powered by the sun. Incoming and outgoing radiation balance only at about 40°N and 40°S. The tropics gain heat and the poles lose it, so winds and currents (trade winds, hurricanes, the Gulf Stream, the Kuroshio) move heat poleward. Any theory has to respect two linkages. Growing ice takes water from the ocean, so ice volume and sea level move together. Ice also reflects sunlight, so more ice means more cooling and more ice. This <b>radiation-feedback effect</b> (today called ice–albedo feedback) amplifies any small initial change, so most theories focus on finding the initial nudge.</p>
+  <p>The authors review eight theories and score them:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Theory</th><th>Main proponent</th><th>Idea</th><th>Verdict (as of 1978)</th></tr></thead>
+    <tbody>
+      <tr><td>Solar variation</td><td>—</td><td>The sun's output dropped</td><td>Untestable: no way to calculate past solar output</td></tr>
+      <tr><td>Space dust</td><td>—</td><td>Dust clouds dimmed (or brightened) the sun</td><td>Untestable; two versions contradict each other</td></tr>
+      <tr><td>Carbon dioxide</td><td>—</td><td>Less CO₂ (a greenhouse gas) means cooling</td><td>Untestable then: no explanation for why CO₂ would drop</td></tr>
+      <tr><td>Volcanic dust</td><td>—</td><td>Eruptions (e.g. Krakatoa 1883) reflect sunlight</td><td>Untestable: records not good enough</td></tr>
+      <tr><td>Crustal uplift</td><td>Lyell; Dana (1894)</td><td>Higher land is colder; a North Atlantic land bridge blocks the Gulf Stream</td><td><b>Rejected</b>: too fast and global (James Geikie, 1874)</td></tr>
+      <tr><td>Antarctic surge</td><td>Alex Wilson (1964)</td><td>Antarctic ice slides into the sea, and floating ice reflects sunlight</td><td><b>Rejected</b>: no sea-level jump, no sea-floor deposit</td></tr>
+      <tr><td>Open Arctic Ocean</td><td>Ewing &amp; Donn (1956)</td><td>An ice-free Arctic supplies moisture, so snow builds ice sheets</td><td><b>Rejected</b>: Arctic sediments show it was never ice-free</td></tr>
+      <tr><td>Stochastic</td><td>—</td><td>Ice ages are just large random fluctuations</td><td>Untestable: predicts no specific events</td></tr>
+    </tbody>
+  </table></div>
+  <p>Score: three rejected and five untestable. The ninth contender, the astronomical theory, is the only one that makes specific, dated predictions, which is why the rest of Part II is about it.</p>
+  <div class="cols">
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Climate system</dt><dd>Atmosphere, ocean and ice acting as one machine powered by the sun.</dd>
+      <dt>Radiation budget</dt><dd>Energy absorbed vs energy lost; surplus in the tropics, deficit at the poles.</dd>
+      <dt>Poleward heat transport</dt><dd>Winds and currents carry tropical heat toward the poles.</dd>
+      <dt>Radiation (ice–albedo) feedback</dt><dd>A positive feedback: more ice reflects more sunlight, which brings more cooling.</dd>
+      <dt>Greenhouse effect</dt><dd>CO₂ lets sunlight in but traps outgoing long-wave radiation.</dd>
+    </dl></div>
+    <div class="box people"><h4>Testing logic</h4><dl>
+      <dt>Testable theory</dt><dd>One that predicts a record you can check: when events happened, or what sediments should contain.</dd>
+      <dt>Why this matters</dt><dd>The authors judge theories by testability. This is the method behind the whole book.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>A good theory needs a mechanism and a testable prediction. Feedbacks explain amplification, but something has to start the change.</p>
+</article>
+
+<article class="ch" id="ch5">
+  <div class="chhead"><span class="chnum">Chapter 5</span><span class="when">120 BC · 1754 · 1842 – 1852</span></div>
+  <h3>Birth of the Astronomical Theory</h3>
+  <p class="question">Could the way Earth moves around the sun cause ice ages?</p>
+  <span class="status st-prop">Astronomical theory: proposed, then refuted</span>
+  <p>In 1842, five years after Neuchâtel, the Paris mathematics tutor <b>Joseph Adhemar</b> published <i>Revolutions of the Sea</i>, the first suggestion that orbital variations drive ice ages. The chapter explains the astronomy needed:</p>
+  <ul class="prose">
+    <li><b>Kepler</b> showed the orbit is an ellipse with the sun at one focus. Earth is closest (<b>perihelion</b>) around 3 January and farthest (<b>aphelion</b>) around 4 July, 3 million miles farther.</li>
+    <li>Seasons come from the 23½° <b>tilt</b> of Earth's axis, not distance. The solstices (21 June, 21 December) and equinoxes (20 March, 22 September) are the "cardinal points".</li>
+    <li>Because Earth moves more slowly near aphelion, northern spring+summer are currently 7 days longer than fall+winter.</li>
+    <li><b>Hipparchus</b> (about 120 BC) discovered that the axis points in a slowly changing direction. It wobbles like a top once every 26,000 years (<b>axial precession</b>). <b>d'Alembert</b> (1754) explained it as the pull of sun and moon on Earth's equatorial bulge, and showed that combined with the orbit's own rotation, the solstices and equinoxes circle the orbit every ~22,000 years (<b>precession of the equinoxes</b>).</li>
+  </ul>
+  <p>Adhemar's reasoning: the southern hemisphere now has more hours of darkness than daylight each year, so it is cooling, which is why Antarctica has an ice sheet. Every 11,000 years (half a precession cycle) the situation flips, so ice ages alternate between hemispheres. He added a dramatic sideshow: the Antarctic ice would rot into a mushroom shape, collapse, and send an iceberg-laden flood northward.</p>
+  <p>In 1852 <b>Alexander von Humboldt</b> pointed out the flaw. A hemisphere's temperature depends on the total solar energy received, not hours of darkness. As d'Alembert had shown, a season's loss from being farther from the sun is exactly balanced by the opposite season being closer, so both hemispheres get equal heat each year. Antarctica is cold because of geography: a polar continent isolated from warm currents.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>Joseph Adhemar</dt><dd>Proposed the first astronomical theory (1842), based on precession.</dd>
+      <dt>Johannes Kepler</dt><dd>Showed orbits are ellipses (17th century).</dd>
+      <dt>Hipparchus</dt><dd>Discovered precession (about 120 BC).</dd>
+      <dt>Jean d'Alembert</dt><dd>Explained precession's cause (1754).</dd>
+      <dt>Alexander von Humboldt</dt><dd>Refuted Adhemar's mechanism (1852).</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Perihelion / aphelion</dt><dd>Closest / farthest points of the orbit.</dd>
+      <dt>Solstice / equinox</dt><dd>Longest/shortest day vs equal day and night.</dd>
+      <dt>Axial precession (26,000 yr)</dt><dd>Wobble of the axis direction.</dd>
+      <dt>Precession of the equinoxes (~22,000 yr)</dt><dd>The seasons' slow shift around the orbit; decides whether northern winter is near or far from the sun.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>Adhemar's mechanism was wrong, but he put a lasting idea on the table: orbital geometry might control climate.</p>
+</article>
+
+<article class="ch" id="ch6">
+  <div class="chhead"><span class="chnum">Chapter 6</span><span class="when">1821 – 1890 (theory 1864 – 1875)</span></div>
+  <h3>The Astronomical Theory of James Croll</h3>
+  <p class="question">Can a better astronomical mechanism be found?</p>
+  <span class="status st-warn">Astronomical theory: revived and taken seriously</span>
+  <p><b>James Croll</b> is the underdog of the book. A Scottish farm boy who left school at 13, he taught himself physics and philosophy while working, without much success, as a millwright, carpenter, tea-shop owner, temperance hotelkeeper and insurance salesman. A janitor's job at the Andersonian College in Glasgow (1859) gave him a scientific library, and in 1864 he turned to the cause of the ice ages.</p>
+  <p>Croll agreed Adhemar was wrong about hours of darkness, but used something Adhemar had ignored. The French astronomer <b>Urbain Leverrier</b> (whose orbital calculations also led to the discovery of Neptune) had shown that the <b>eccentricity</b> of Earth's orbit slowly changes because of the planets' gravitational pull. Today it is about 1%, and it has ranged from near zero to about 6%. Croll calculated eccentricity for the past 3 million years and plotted it, the first geologist to do so. Eccentricity had been high around 100,000 years ago and low for the last 10,000.</p>
+  <p>His theory, published in the <i>Philosophical Magazine</i> in August 1864:</p>
+  <ul class="prose">
+    <li>Eccentricity hardly changes yearly heat, but it strongly changes <b>seasonal</b> heating.</li>
+    <li><b>Winter is the critical season</b>: less winter sunlight lets snow accumulate.</li>
+    <li><b>Positive feedback</b>: more snow reflects more sunlight and cools further. Croll was the first to develop this idea.</li>
+    <li>Precession decides whether winter falls near or far from the sun, but its effect depends on eccentricity. A circular orbit means no effect.</li>
+    <li>So an ice age happens in a hemisphere when (a) eccentricity is high and (b) that hemisphere's winter solstice falls at aphelion. Ice ages alternate between hemispheres every ~11,000 years during long "Glacial Epochs". The last Glacial Epoch ran from about 250,000 to 80,000 years ago.</li>
+    <li>A second amplifier, ocean currents: colder poles strengthen the trade winds, which shift warm equatorial currents (deflected by the bulge of Brazil) toward the other hemisphere. Croll's explanation of wind-driven currents was essentially correct.</li>
+  </ul>
+  <p>Archibald Geikie hired him at the Geological Survey of Scotland in 1867. In <i>Climate and Time</i> (1875) Croll added that a smaller axial tilt (it varies about 22°–25°) gives the poles less heat. He could not pursue this because Leverrier had not calculated when the tilt changed. Croll became a Fellow of the Royal Society, was injured in 1880, and died in 1890.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>James Croll</dt><dd>Self-taught; second astronomical theory (1864). Eccentricity + precession, winter critical, feedback, ocean currents.</dd>
+      <dt>Urbain Leverrier</dt><dd>Calculated past eccentricity and tilt over 100,000 years (1843).</dd>
+      <dt>Archibald Geikie</dt><dd>Director of the Geological Survey of Scotland; hired Croll.</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Orbital eccentricity</dt><dd>How elongated the orbit is; it modulates the precession effect.</dd>
+      <dt>Seasonal vs annual insolation</dt><dd>Orbital changes redistribute sunlight between seasons more than they change the total.</dd>
+      <dt>Positive feedback</dt><dd>A change that reinforces itself (snow–albedo).</dd>
+      <dt>Trigger and amplifier</dt><dd>A small orbital push, enlarged by feedback and currents.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>Croll's theory was testable because it made dated predictions. Testing it needed accurate dates for ice ages, which nobody yet had.</p>
+</article>
+
+<article class="ch" id="ch7">
+  <div class="chhead"><span class="chnum">Chapter 7</span><span class="when">1864 – c. 1900</span></div>
+  <h3>Debate Over Croll's Theory</h3>
+  <p class="question">Does the geological record fit Croll's predictions?</p>
+  <span class="status st-idle">Astronomical theory: debated, then abandoned by 1900</span>
+  <p><b>James Geikie</b> (Archibald's brother) became Croll's main supporter in <i>The Great Ice Age</i> (1874). His evidence was that drift contained many tills, as many as six in some places, separated by peat with warm-climate plants. A cycle of repeated ice ages was exactly what Croll predicted. T. C. Chamberlin contributed North American evidence of at least three tills.</p>
+  <p>This chapter also explains where the ice ages sit in the geological time scale. <b>Lyell</b> had divided Earth history into Eras and Periods (1830–1865). In 1846 <b>Edward Forbes</b> proposed using <b>Pleistocene</b> for the time when the glacial and interglacial drift formed. Modern usage: <b>Pleistocene</b> plus <b>Holocene</b> (postglacial time) make up the <b>Quaternary</b> Period of the Cenozoic Era. Geologists also found traces of much older glaciations in Paleozoic and Precambrian rocks (explained in the Epilogue).</p>
+  <p>There were two ways to test Croll:</p>
+  <ul class="prose">
+    <li><b>Did ice ages alternate between hemispheres?</b> No layer could be traced across oceans, so geologists compared how weathered the youngest tills were. Many concluded the hemispheres were glaciated at the same time (Dana agreed). Others said weathering rates are too unreliable to detect an 11,000-year difference. The question was unresolved.</li>
+    <li><b>Do the dates match?</b> Croll's theory said the last ice age ended ~80,000 years ago. Niagara Falls offered a clock: in 1829 <b>Robert Bakewell Jr.</b> estimated the falls had cut their gorge, receding 3 ft/year, in ~10,000 years. Lyell (1841) revised this to 1 ft/year, or ~30,000 years. Later estimates ranged from 6,000 to 32,000. <b>Newton Winchell</b>'s study of St. Anthony Falls gave 8,000. In 1894 <b>James Dana</b> summed up the American position: the glacial period ended 10,000–15,000 years ago, not 80,000.</li>
+  </ul>
+  <p>European geologists, following Geikie (and the astronomer Sir Robert Ball, 1891), mostly stayed loyal. Meteorologists added that Croll's radiation changes were too small to matter. By about 1900 the theory was treated as a historical curiosity. The waterfall dates were right: the last ice sheets really did vanish about 10,000 years ago.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>James Geikie</dt><dd>Chief supporter; multiple tills fit a repeating cycle.</dd>
+      <dt>James D. Dana</dt><dd>Yale; rejected Croll on American dates (1894).</dd>
+      <dt>Edward Forbes</dt><dd>Gave "Pleistocene" its glacial meaning (1846).</dd>
+      <dt>Bakewell, Lyell, Winchell</dt><dd>Waterfall-recession dating of postglacial time.</dd>
+      <dt>Robert Ball</dt><dd>Irish astronomer who defended Croll (1891).</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Geological time scale</dt><dd>Eras → Periods → Epochs. Quaternary = Pleistocene + Holocene.</dd>
+      <dt>Correlation</dt><dd>Matching layers of the same age in different places. It was impossible across oceans with 19th-century tools.</dd>
+      <dt>Chronology problem</dt><dd>Without accurate dates, no orbital theory can be tested. This is the central problem of Part II.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>Croll's theory failed on a wrong prediction (the end of the last ice age at 80,000 years). The deeper problem, unreliable dating, would recur for 80 years.</p>
+</article>
+
+<article class="ch" id="ch8">
+  <div class="chhead"><span class="chnum">Chapter 8</span><span class="when">1911 – 1958 (theory 1920 – 1941)</span></div>
+  <h3>Through Distant Worlds and Times</h3>
+  <p class="question">Can the effect of orbital changes on sunlight be calculated precisely?</p>
+  <span class="status st-good">Astronomical theory: rebuilt on mathematics</span>
+  <p><b>Milutin Milankovitch</b>, a Serbian engineer who became professor of applied mathematics at Belgrade in 1909, resolved in a coffeehouse in 1911 to calculate the climates of Earth, Mars and Venus, past and present. Adhemar and Croll had lacked the mathematics to calculate the size of orbital effects. Milankovitch set himself four goals:</p>
+  <ol class="prose">
+    <li><b>Orbital geometry.</b> Already done: <b>Ludwig Pilgrim</b> (1904) had calculated eccentricity, tilt and precession for the past million years (Croll had only eccentricity and precession for 100,000 years).</li>
+    <li><b>Sunlight by latitude and season.</b> Using Newton's principles (distance and angle of the sun's rays). He worked through the Balkan War (1912) and World War I, partly as a prisoner of war and then in a Budapest library. His <i>Mathematical Theory of Heat Phenomena Produced by Solar Radiation</i> (1920) showed orbital changes were large enough to cause ice ages.</li>
+    <li><b>Past radiation curves.</b> The climatologist <b>Wladimir Köppen</b> (with his son-in-law <b>Alfred Wegener</b>, of continental drift fame) wrote to him. Köppen argued the critical factor is <b>cooler summers</b>, not colder winters as Adhemar and Croll had assumed. Arctic winters are already cold enough for snow, so what matters is whether summer melts it. Milankovitch spent 100 days calculating summer radiation at 55°, 60° and 65°N over the past 650,000 years. Köppen saw the curves matched the Alpine ice-age history of Penck and Brückner, and published them in Köppen &amp; Wegener's <i>Climates of the Geological Past</i> (1924). In 1930 Milankovitch extended the curves to eight latitudes.</li>
+    <li><b>Ice-sheet response.</b> Using the snowline (the altitude above which snow lasts all year) he estimated how much ice would grow for a given radiation change, published in 1938. His life's work was summed up in the <i>Canon of Insolation and the Ice-Age Problem</i>, being printed when Germany invaded Yugoslavia on 6 April 1941.</li>
+  </ol>
+  <p>A key result: the shape of the radiation curve depends on latitude. At high latitudes the <b>41,000-year tilt cycle</b> dominates. Near the equator the <b>22,000-year precession cycle</b> dominates. Milankovitch died in 1958, before the decisive tests.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>Milutin Milankovitch</dt><dd>Calculated insolation by latitude and season; radiation curves (1920–1941).</dd>
+      <dt>Wladimir Köppen</dt><dd>Climatologist (climate classification); argued summer is decisive.</dd>
+      <dt>Alfred Wegener</dt><dd>Continental drift; co-author who publicized the curves (1924).</dd>
+      <dt>Ludwig Pilgrim</dt><dd>Orbital calculations over 1 million years (1904).</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Insolation</dt><dd>Incoming solar radiation at a given latitude and season.</dd>
+      <dt>Summer insolation at 65°N</dt><dd>The classic "Milankovitch curve": low summer sunshine lets snow survive.</dd>
+      <dt>Latitude dependence</dt><dd>Tilt dominates near the poles, precession near the equator.</dd>
+      <dt>Snowline</dt><dd>Altitude of permanent snow; used to link radiation to ice extent.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>Milankovitch changed the critical season from winter (Croll) to summer (Köppen) and made the theory quantitative. The result is the "Milankovitch theory".</p>
+</article>
+
+<article class="ch" id="ch9">
+  <div class="chhead"><span class="chnum">Chapter 9</span><span class="when">1880s – 1965</span></div>
+  <h3>The Milankovitch Controversy</h3>
+  <p class="question">Does the land record confirm Milankovitch's predictions?</p>
+  <span class="status st-bad">Astronomical theory: accepted, then rejected by 1965</span>
+  <p>The theory's great strength was that it was testable. The 65°N curve had nine radiation minima (ice ages) in an irregular pattern: a triplet at 25,000, 72,000 and 115,000 years ago, three earlier pairs, and one very long warm interval in the middle.</p>
+  <p>Two land-based records were used to test it:</p>
+  <ul class="prose">
+    <li><b>North America:</b> Chamberlin and <b>Frank Leverett</b> recognized four drift sheets: <b>Nebraskan, Kansan, Illinoian, Wisconsin</b> (oldest to youngest). Supporters matched these to Milankovitch's four groups of minima. Critics noted the drifts had no real dates, so the match was inconclusive.</li>
+    <li><b>The Alps:</b> In the 1880s <b>Albrecht Penck</b> found three terraces above Alpine river valleys. He reasoned that rivers deposit gravel in cold times and cut flat surfaces (straths) in warm times, so each gravel layer marks an ice age. With <b>Eduard Brückner</b> (1909) he named four: <b>Günz, Mindel, Riss, Würm</b> (alphabetical, oldest to youngest). Using lake sediments, they estimated postglacial time at 20,000 years, a 240,000-year "Great Interglacial", and a 650,000-year Pleistocene.</li>
+  </ul>
+  <p>Köppen and Wegener matched Penck–Brückner to the radiation curve in 1924, and the Great Interglacial looked like Milankovitch's long warm interval. Barthel Eberl and Wolfgang Soergel refined the terraces and found an even better match. By the 1930s–40s most European geologists accepted the theory, and Frederick Zeuner used it as a calendar to date the Pleistocene (1946, 1959). The logic had quietly reversed: the theory was being used to date the record instead of the record testing the theory.</p>
+  <p>Problems built up. <b>Ingo Schaefer</b> found warm-climate snails in "glacial" gravels, and was ignored. Meteorologists said the theory ignored heat transport by air and ocean, and doubted his calculation that ice-age winters were slightly warmer. Then came <b>radiocarbon dating</b> (<b>Willard Libby</b>, 1946–49, available 1951). Cosmic rays make radioactive carbon-14, living things absorb it, and after death it decays at a known rate. It works for material up to about 40,000 years old. <b>Richard Flint</b> and Meyer Rubin showed the Wisconsin drift held several advances, with the last ice maximum 18,000 years ago and rapid melting by 10,000. A 7,000-year lag behind the 25,000-year radiation minimum was acceptable. But a warm-climate peat at <b>Farmdale, Illinois</b>, dated to 25,000 years, sat exactly at a radiation minimum. Goldthwait and Dreimanis's ice-margin record from Indiana to Quebec showed the ice far north at 72,000 years (a predicted minimum) and advances at 60,000, 40,000 and 18,000. By 1965 the theory had lost most of its supporters.</p>
+  <p class="small">An irony the authors point out: many of these damning chronologies stretched radiocarbon dates beyond the method's reliable range of about 40,000 years.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>Albrecht Penck &amp; Eduard Brückner</dt><dd>Four Alpine ice ages from river terraces (1909).</dd>
+      <dt>T. C. Chamberlin &amp; Frank Leverett</dt><dd>Four North American drifts.</dd>
+      <dt>Barthel Eberl, Wolfgang Soergel</dt><dd>Refined terrace sequence, which seemed to confirm Milankovitch.</dd>
+      <dt>F. E. Zeuner</dt><dd>Used Milankovitch as a Pleistocene calendar.</dd>
+      <dt>Ingo Schaefer</dt><dd>Warm fossils in "glacial" gravels.</dd>
+      <dt>Willard Libby</dt><dd>Radiocarbon dating.</dd>
+      <dt>Richard Flint, Meyer Rubin</dt><dd>Radiocarbon chronology of the Wisconsin glaciation.</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Testable prediction</dt><dd>Number and timing of ice ages.</dd>
+      <dt>River terraces</dt><dd>Step-like former valley floors; Penck read gravel = glacial.</dd>
+      <dt>Radiocarbon (¹⁴C) dating</dt><dd>Radioactive decay clock for organic material, valid to about 40,000 years.</dd>
+      <dt>Circular reasoning</dt><dd>Using a theory to date the evidence meant to test it.</dd>
+      <dt>Last Glacial Maximum</dt><dd>Peak of the last ice age, about 18,000 radiocarbon years ago.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>The land record is fragmentary, because each advance erodes the deposits of earlier ones. Both the "confirmation" and the "rejection" rested on weak dating.</p>
+</article>
+
+<article class="ch" id="ch10">
+  <div class="chhead"><span class="chnum">Chapter 10</span><span class="when">1872 – 1964</span></div>
+  <h3>The Deep and the Past</h3>
+  <p class="question">Could the sea floor hold a complete record of ice ages?</p>
+  <span class="status st-bad">Astronomical theory: still out of favour</span>
+  <p>Croll had predicted that the ocean floor would hold a more complete climate record than the land. The <b>HMS Challenger</b> expedition (1872–76, led by C. Wyville Thomson; 50-volume report by John Murray, 1895) found the sea floor blanketed by sediment. Away from the continents there are <b>oozes</b> made of the shells of plankton: <b>foram</b> (calcium carbonate) ooze in warm and temperate seas shallower than ~4,000 m, and opal ooze of <b>radiolaria</b> and <b>diatoms</b> in cold polar waters. Below about 4,000 m shells dissolve, leaving fossil-free <b>brown clay</b>. Crucially, some plankton species live only in warm water and others only in cold, so shifts in species record climate.</p>
+  <p>Getting long cores was the obstacle. Gravity corers took only about 1 m, and C. S. Piggot's dynamite-driven corer distorted the record. Even so, <b>Wolfgang Schott</b> (1935), studying Meteor expedition cores, counted foram species and found three layers. One warm species, <b><i>Globorotalia menardii</i></b>, was absent from the middle layer, which he read as the last ice age. In 1947 <b>Börje Kullenberg</b> invented the <b>piston corer</b>, taking 10–15 m cores. The Swedish Deep-Sea Expedition (<i>Albatross</i>, 1947–48, led by Hans Pettersson) collected them worldwide.</p>
+  <ul class="prose">
+    <li><b>Gustaf Arrhenius</b> found calcium-carbonate cycles in Pacific cores, which accumulate very slowly (~1 mm per century). Atlantic cycles ran the opposite way, with faster accumulation (2–3 mm per century).</li>
+    <li><b>Phleger, Parker and Peirson</b> (1953) found at least nine ice ages in Atlantic cores, but also puzzling layers of shallow-water sand and shells.</li>
+    <li><b>Heezen and Ewing</b> (1952) solved that: the 1929 Grand Banks earthquake set off a <b>turbidity current</b> (an underwater sediment avalanche) that snapped cables and spread sand far out. Such layers could now be identified and avoided.</li>
+    <li><b>Maurice Ewing</b> founded Columbia's <b>Lamont Geological Observatory</b> and had ships take a core every day, building the world's largest core library. <b>David Ericson</b> and Goesta Wollin used <i>menardii</i> abundance as a thermometer. Broecker and Kulp radiocarbon-dated the top boundary to 11,000 years, matching a sudden change on land. Ericson lettered the zones from <b>Z</b> (postglacial) downward: Y cold, X warm, W, V (a long warm zone, compared to the Great Interglacial), U.</li>
+  </ul>
+  <p>Ericson's scheme clashed with <b>Cesare Emiliani</b>'s isotope results (Chapter 11), even on the same cores. Ericson dated the start of the Pleistocene to the extinction of discoasters (star-shaped fossil plants), which he estimated at 1.5 million years ago. He did not support Milankovitch.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>C. Wyville Thomson, John Murray</dt><dd>Challenger expedition and report.</dd>
+      <dt>Wolfgang Schott</dt><dd>First climate record from plankton in cores (1935).</dd>
+      <dt>Börje Kullenberg</dt><dd>Piston corer (1947).</dd>
+      <dt>Gustaf Arrhenius</dt><dd>Carbonate cycles as climate records (1952).</dd>
+      <dt>Bruce Heezen &amp; Maurice Ewing</dt><dd>Turbidity currents; Ewing built Lamont.</dd>
+      <dt>David Ericson &amp; Goesta Wollin</dt><dd><i>menardii</i> zones Z–Q; <i>The Deep and the Past</i> (1964).</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Plankton: forams, radiolaria, diatoms</dt><dd>Microscopic organisms whose shells build sea-floor ooze.</dd>
+      <dt>Carbonate dissolution depth</dt><dd>Below ~4,000 m lime shells dissolve.</dd>
+      <dt>Sedimentation rate</dt><dd>Slow rates give long but blurry records.</dd>
+      <dt>Indicator species</dt><dd>A species whose presence tracks water temperature.</dd>
+      <dt>Turbidity current</dt><dd>Sediment avalanche that disrupts the record.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>Deep-sea cores offered a continuous record, the first since the problem began. The next step was to read it correctly and date it.</p>
+</article>
+
+<article class="ch" id="ch11">
+  <div class="chhead"><span class="chnum">Chapter 11</span><span class="when">1947 – 1969</span></div>
+  <h3>Pleistocene Temperatures</h3>
+  <p class="question">What exactly does the oxygen-isotope signal in forams measure?</p>
+  <span class="status st-bad">Astronomical theory: minority view</span>
+  <p>At the University of Chicago, Nobel laureate <b>Harold Urey</b> proposed in 1947 that oxygen isotopes could be a thermometer. Seawater has light oxygen-16 and heavy oxygen-18, and shells grown in colder water take up more oxygen-18. <b>Samuel Epstein</b> and colleagues built the precise lab method (1951). One known catch: the ratio also depends on the isotopic makeup of seawater itself.</p>
+  <p><b>Cesare Emiliani</b>, an Italian oil geologist turned graduate student, applied it to planktonic forams in deep-sea cores. His 1955 paper "Pleistocene Temperatures" was a landmark. It found seven glacial–interglacial cycles in 300,000 years, Caribbean surface waters about 6°C colder in ice ages, and a reasonable fit to Milankovitch. He numbered the swings as <b>isotope stages</b>, odd numbers warm and even numbers cold, counting from Stage 1 (today) downward.</p>
+  <p>Three disputes followed: with Ericson over what the curves meant, with Broecker and Ericson over Emiliani's time scale, and with geologists who called the Milankovitch match a coincidence. A 1965 conference was inconclusive. Ericson argued that ice sheets are rich in light oxygen-16, so growing ice changes seawater and the isotope curve may record <b>ice volume</b>, not temperature. Emiliani disagreed.</p>
+  <p><b>John Imbrie</b> (one of the book's authors) and <b>Nilva Kipp</b> developed a statistical <b>multiple-factor (transfer-function) method</b>. It relates today's mix of all 25 planktonic foram species to modern sea-surface temperature and salinity, then applies the equations down a core. Comparing their results with Broecker and van Donk's isotope data for core V12-122 showed Ericson's <i>menardii</i> was responding to something other than temperature (Ericson was wrong), and that Caribbean cooling was only about 2°C, not 6°C (Emiliani was half right). So most of the isotope signal had to be ice volume. At a Paris meeting in 1969, Imbrie spoke to an audience of two, one of whom was <b>Nicholas Shackleton</b>, who had already published (1967) the same conclusion.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>Harold Urey</dt><dd>Oxygen-isotope paleothermometer theory (1947).</dd>
+      <dt>Samuel Epstein</dt><dd>Lab method for isotope ratios.</dd>
+      <dt>Cesare Emiliani</dt><dd>Isotope stages in deep-sea cores (1955).</dd>
+      <dt>John Imbrie &amp; Nilva Kipp</dt><dd>Multiple-factor method for sea-surface temperature.</dd>
+      <dt>Nicholas Shackleton</dt><dd>Isotopes reflect global ice volume (1967).</dd>
+      <dt>Broecker &amp; van Donk</dt><dd>Isotope analysis of core V12-122.</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Oxygen isotopes (¹⁸O/¹⁶O)</dt><dd>Ratio in shells reflects water temperature <em>and</em> seawater composition.</dd>
+      <dt>Ice-volume effect</dt><dd>Ice sheets store light ¹⁶O, so oceans grow isotopically heavier in glacials.</dd>
+      <dt>Isotope stages</dt><dd>Numbered warm (odd) and cold (even) intervals; today called Marine Isotope Stages.</dd>
+      <dt>Transfer function</dt><dd>Statistical link between modern species mix and environment, applied to the past.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>The isotope curve was reinterpreted as a global ice-volume gauge. That turned out to be more useful than a thermometer, because ice volume is exactly what the ice-age theory tries to explain.</p>
+</article>
+
+<article class="ch" id="ch12">
+  <div class="chhead"><span class="chnum">Chapter 12</span><span class="when">1956 – 1969</span></div>
+  <h3>Milankovitch Revival</h3>
+  <p class="question">Can old sea levels be dated well enough to test the theory beyond radiocarbon's range?</p>
+  <span class="status st-good">Astronomical theory: revived</span>
+  <p><b>Rhodes Fairbridge</b> saw 19 evenly spaced beach ridges in southern Australia, suggesting regular sea-level (and so ice-volume) cycles. He had no dates, so the argument was only qualitative. A second dating revolution supplied them: methods based on uranium, thorium, potassium and protactinium. <b>John Barnes</b> and colleagues (Los Alamos, 1956) developed <b>thorium dating</b> for fossil corals up to ~150,000 years old.</p>
+  <p><b>Wallace Broecker</b> and David Thurber dated fossil reefs in Eniwetok, Florida and the Bahamas. Sea level had been ~6 m higher about 120,000 years ago, and high again ~80,000 years ago. In 1965 <b>Robley Matthews</b> of Brown University, stuck on Barbados after a wasted trip to Grenada, saw that the island was terraced like a staircase. With <b>Kenneth Mesolella</b> he showed each terrace is a separate fossil reef (the coral <i>Acropora palmata</i>, which grows near the sea surface). Because Barbados is slowly rising, each reef records a former high sea level. Broecker's team dated them at about 82,000, 105,000 and 125,000 years.</p>
+  <p>The 65°N curve had no peak at 105,000 years, but the curves for lower latitudes (45°N) peaked at all three dates. So the <b>precession cycle mattered more</b> than Milankovitch's 65°N emphasis allowed. Published in 1968 and confirmed in New Guinea and Hawaii, this revived the theory. But three matching dates could still be chance. A longer, well-dated record was needed.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>Rhodes Fairbridge</dt><dd>Regular sea-level ridges in Australia.</dd>
+      <dt>John Barnes</dt><dd>Thorium dating of corals (1956).</dd>
+      <dt>Wallace Broecker</dt><dd>Dated reefs; championed the precession effect.</dd>
+      <dt>Robley Matthews &amp; Kenneth Mesolella</dt><dd>Barbados reef terraces (1965–69).</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Uranium-series (thorium) dating</dt><dd>Dates corals to ~150,000 years, beyond radiocarbon.</dd>
+      <dt>Raised reef terraces</dt><dd>On a rising island, each reef marks an old interglacial high stand of the sea.</dd>
+      <dt>Sea level as ice gauge</dt><dd>High sea level means little ice on land.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>Independent dating revived the theory and shifted emphasis toward precession. One test with three points was not enough to prove it.</p>
+</article>
+
+<article class="ch" id="ch13">
+  <div class="chhead"><span class="chnum">Chapter 13</span><span class="when">1906 – 1971</span></div>
+  <h3>Signal from the Earth</h3>
+  <p class="question">How can deep-sea cores be dated?</p>
+  <span class="status st-good">Astronomical theory: the dating tool arrives</span>
+  <p>In 1906 <b>Bernard Brunhes</b> found that cooling lava records the direction of Earth's magnetic field, and that some lavas point the opposite way. In 1929 <b>Motonori Matuyama</b> concluded the field had reversed during the Pleistocene, and many times before. Most scientists preferred "self-reversal" by unusual minerals. In the late 1950s and early 1960s, work in Russia (Khramov), Iceland (Rutten) and Hawaii (McDougall and Tarling) supported real reversals. In 1963 <b>Allan Cox, Richard Doell</b> and <b>Brent Dalrymple</b> proved it. Using <b>potassium–argon dating</b> (Curtis and Evernden) they showed reversals happened at the same time worldwide, and built a <b>paleomagnetic time scale</b>.</p>
+  <p>The present normal-polarity interval is the <b>Brunhes Epoch</b>, preceded by the reversed <b>Matuyama Epoch</b> containing short normal "events" (<b>Jaramillo</b>, <b>Olduvai</b>). Two fixed points became vital: the <b>Brunhes–Matuyama boundary at 700,000 years</b>, and the <b>Olduvai event at 1.8 million years</b>.</p>
+  <p>Ewing and Talwani tried to read reversals in cores in 1956 without clear success. Harrison and Funnell found the Brunhes–Matuyama boundary in Pacific cores in 1964. At Lamont, <b>Neil Opdyke</b> (with Foster and Glass) measured cores chosen by <b>James Hays</b>, the Antarctic radiolarian specialist, and the reversals appeared clearly in all of them, confirming Hays's fossil zones (Hays &amp; Opdyke, 1967). Any core with the magnetic signal could now be dated.</p>
+  <p>This also settled how long the Pleistocene is. Lyell (1839) had defined it by fossils, Forbes by cold climate, and a 1948 committee by the first cold-water species in southern Italian rocks. <b>Berggren and Hays</b> (1971) showed that event coincides with the Olduvai event, so the Pleistocene began <b>1.8 million years ago</b>, not 650,000 as Penck and Milankovitch had assumed.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>Bernard Brunhes</dt><dd>Reversed magnetization in lavas (1906).</dd>
+      <dt>Motonori Matuyama</dt><dd>Pleistocene field reversal (1929).</dd>
+      <dt>Cox, Doell &amp; Dalrymple</dt><dd>Proved global reversals; time scale (1963).</dd>
+      <dt>Curtis &amp; Evernden</dt><dd>Potassium–argon dating of lavas.</dd>
+      <dt>Neil Opdyke &amp; James Hays</dt><dd>Reversals in deep-sea cores (1967).</dd>
+      <dt>William Berggren</dt><dd>With Hays, dated the Pleistocene base (1971).</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Paleomagnetism</dt><dd>Ancient magnetic field direction recorded in rocks and sediment.</dd>
+      <dt>Geomagnetic reversal</dt><dd>Field flips; a global, simultaneous time marker.</dd>
+      <dt>Brunhes / Matuyama</dt><dd>Current normal epoch / previous reversed epoch.</dd>
+      <dt>Potassium–argon dating</dt><dd>Radiometric dating of volcanic rock of almost any age.</dd>
+      <dt>Pleistocene base</dt><dd>1.8 Myr in the book (see modern notes).</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>Magnetic reversals gave a worldwide calendar for deep-sea cores, which finally addressed the chronology problem that had defeated Croll and Milankovitch.</p>
+</article>
+
+<article class="ch" id="ch14">
+  <div class="chhead"><span class="chnum">Chapter 14</span><span class="when">1961 – 1970</span></div>
+  <h3>Pulsebeat of Climate</h3>
+  <p class="question">What is the main rhythm of Pleistocene climate?</p>
+  <span class="status st-warn">Astronomical theory: dated record, but the main cycle is unexplained</span>
+  <p>In Czechoslovakia, <b>George Kukla</b> and <b>Vojen Ložek</b> (1961) showed that the unglaciated corridor of Central Europe recorded climate in alternating soils (warm, forested times) and loess (cold, dusty polar-desert times). At least ten cycles were exposed near Brno. In 1968 Kukla found five magnetic reversals in the brickyard sequence, giving dates: the main climate cycle was <b>100,000 years</b>. Each cycle was asymmetric (forest soil, then steppe black soil, then Arctic brown soil, then loess): a long slow cooling and an abrupt warming. He called the sharp boundaries "<b>marklines</b>".</p>
+  <p>Kukla also showed that Penck's Alpine scheme was wrong. Gravel accumulates in interglacials too. "Würm" gravels contained postglacial logs, Roman bricks, and in one case a bicycle part. The Günz–Mindel–Riss–Würm framework collapsed, and with it Köppen and Wegener's original confirmation of Milankovitch.</p>
+  <p>Meanwhile <b>Broecker and Jan van Donk</b> (1970), studying Caribbean core V12-122, also found a 100,000-year sawtooth cycle in the isotope record: slow ice growth ended by rapid melting events they called <b>terminations</b>. Kukla's marklines matched the terminations. <b>William Ruddiman and Andrew McIntyre</b> showed the Gulf Stream swung like a gate hinged on Cape Hatteras, flowing toward Britain in interglacials and toward Spain in glacials, eight times in the Brunhes Epoch.</p>
+  <p>The difficulty was that Milankovitch's theory had not predicted a 100,000-year cycle, since its 65°N curve is dominated by the 41,000-year tilt cycle. Kukla and Mesolella suggested <b>eccentricity</b> works indirectly by setting the strength of the precession effect. They disagreed over whether summer (Mesolella) or winter (Kukla) was critical. The real test would be whether the smaller 41,000- and 22,000-year cycles showed up in the record.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>George Kukla &amp; Vojen Ložek</dt><dd>Soil–loess climate record; 100,000-yr cycle; overturned Penck.</dd>
+      <dt>Wallace Broecker &amp; Jan van Donk</dt><dd>Sawtooth 100,000-yr cycle; terminations (1970).</dd>
+      <dt>Ruddiman &amp; McIntyre</dt><dd>Gulf Stream swings with the ice ages.</dd>
+      <dt>Kenneth Mesolella</dt><dd>Eccentricity-modulated precession explanation.</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Loess–paleosol sequence</dt><dd>Alternating wind-blown dust and buried soils as a climate record.</dd>
+      <dt>100,000-year cycle</dt><dd>Dominant rhythm of the last ~700,000 years.</dd>
+      <dt>Sawtooth / termination</dt><dd>Slow glaciation, rapid deglaciation.</dd>
+      <dt>Modulation</dt><dd>Eccentricity controls the amplitude of the precession signal.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>Two independent records showed a dominant 100,000-year beat. It fit eccentricity's period but was not directly predicted by the theory, so the decisive test had to come from the shorter cycles.</p>
+</article>
+
+<article class="ch" id="ch15">
+  <div class="chhead"><span class="chnum">Chapter 15</span><span class="when">1970 – 1976</span></div>
+  <h3>Pacemaker of the Ice Ages</h3>
+  <p class="question">Are the tilt and precession cycles present in a well-dated climate record?</p>
+  <span class="status st-good">Astronomical theory: confirmed (1976)</span>
+  <p>In 1970 James Hays proposed a team effort. <b>CLIMAP</b> began in May 1971 with National Science Foundation funding, linking Lamont, Brown, Oregon State and later others, eventually nearly 100 scientists. One product was a 1976 map of the ice-age Earth 18,000 years ago.</p>
+  <p><b>Step 1, a time scale.</b> CLIMAP needed a stratigraphy usable in every ocean. Tsunemasa Saito found Pacific core <b>V28-238</b> (raised by John Ladd), and Opdyke located the Brunhes–Matuyama boundary 1.2 m down. <b>Shackleton</b> measured its isotopes and divided the Brunhes Epoch into 19 stages. The top 17 matched Emiliani's exactly, and the sequence later extended to 22. His curve from <b>bottom-dwelling</b> forams matched the surface one. Deep water is always near freezing, so the signal had to be ice volume. Since the ocean mixes within about 1,000 years, the stages are globally synchronous. Pinned by radiocarbon at the top and the magnetic reversal at the bottom, the stages could be dated by interpolation. This was the "<b>Rosetta Stone</b>" of late Pleistocene climate (Shackleton and Opdyke, 1973).</p>
+  <p><b>Step 2, spectral analysis.</b> Like splitting a chord into its notes, <b>spectral analysis</b> shows which cycle lengths are present. Van den Heuvel (1966) had tried it on Emiliani's data with an outdated time scale. Imbrie and Shackleton's analysis of V28-238 showed a strong 100,000-year peak and weak hints at 40,000 and 20,000. Hays argued that slowly accumulating cores are blurred by burrowing animals (<b>bioturbation</b>), so faster-accumulating cores (more than 2 mm per century) were needed.</p>
+  <p><b>Step 3, the right cores.</b> Hays found <b>RC11-120</b> in the southern Indian Ocean (3 mm per century). Its radiolarian temperature record and isotope ice-volume record showed that northern and southern hemisphere climate changed <b>together</b>, answering Croll's old question against his alternating-hemisphere idea. It only reached 300,000 years, so Hays searched Florida State's Antarctic collection and found <b>E49-18</b> (Watkins, <i>Eltanin</i>), reaching Stage 13 (~450,000 years). Spliced together, the two gave an undisturbed 450,000-year record.</p>
+  <p><b>Step 4, the test.</b> Imbrie used Anandu Vernekar's orbital calculations. The Belgian astronomer <b>André Berger</b> confirmed that precession has two components, 23,000 and 19,000 years. So the prediction was cycles at ~100,000 (eccentricity), 41,000 (tilt), 23,000 and 19,000 (precession). In summer 1974 the spectra showed:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Orbital cycle</th><th>Predicted</th><th>Isotope (ice volume)</th><th>Radiolaria (temperature)</th></tr></thead>
+    <tbody>
+      <tr><td>Eccentricity</td><td class="num">~100,000</td><td class="num">100,000</td><td class="num">dominant peak</td></tr>
+      <tr><td>Tilt</td><td class="num">41,000</td><td class="num">43,000</td><td class="num">42,000</td></tr>
+      <tr><td>Precession</td><td class="num">23,000</td><td class="num">24,000</td><td class="num">23,000</td></tr>
+      <tr><td>Precession</td><td class="num">19,000</td><td class="num">19,000</td><td class="num">20,000</td></tr>
+    </tbody>
+  </table></div>
+  <p>Every cycle matched within 5%. Nicklas Pisias found a significant 23,000-year cycle in V28-238 too. <b>Filter analysis</b> showed the 41,000-year climate cycle lags tilt by about 8,000 years, and the 23,000-year cycle lags precession consistently. That is what you would expect if the orbit sets the pace and slow ice sheets respond. On <b>10 December 1976</b>, Hays, Imbrie and Shackleton published "Variations in the Earth's Orbit: Pacemaker of the Ice Ages" in <i>Science</i>, a century after Croll. Still unexplained: why the 100,000-year cycle is so strong.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>James Hays</dt><dd>Organized CLIMAP; found the key Indian Ocean cores.</dd>
+      <dt>John Imbrie</dt><dd>Spectral and filter analysis.</dd>
+      <dt>Nicholas Shackleton</dt><dd>Isotope measurements; V28-238 with Opdyke.</dd>
+      <dt>Neil Opdyke</dt><dd>Magnetic stratigraphy of V28-238.</dd>
+      <dt>Tsunemasa Saito</dt><dd>Found core V28-238.</dd>
+      <dt>André Berger, Anandu Vernekar</dt><dd>Orbital calculations; double precession cycle.</dd>
+      <dt>Nicklas Pisias</dt><dd>Additional spectral confirmation.</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Stratigraphy</dt><dd>Recognizable, correlatable layers; isotope stages became a global one.</dd>
+      <dt>Spectral analysis</dt><dd>Finding which periodicities a time series contains.</dd>
+      <dt>Bioturbation</dt><dd>Burrowing that blurs slow-accumulating records.</dd>
+      <dt>Phase lag</dt><dd>Climate response trails the orbital forcing.</dd>
+      <dt>Pacemaker</dt><dd>The orbit sets the timing; feedbacks within the climate system supply the size.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>A well-dated deep-sea record contained exactly the orbital frequencies Milankovitch's theory predicted, plus the expected lags. The orbital cause was established, though not the full mechanism.</p>
+</article>
+
+<h2 class="part">Part III · Ice Ages of the Future</h2>
+
+<article class="ch" id="ch16">
+  <div class="chhead"><span class="chnum">Chapter 16</span><span class="when">Forecasts from 1978</span></div>
+  <h3>The Coming Ice Age</h3>
+  <p class="question">When will the present interglacial end?</p>
+  <p>First, a definition. An interglacial is any time when oak and other broad-leaved trees are widespread in Europe. By that rule the present interglacial, the <b>Holocene</b>, began ~10,000 years ago. The authors compare forecasting methods:</p>
+  <div class="tablewrap"><table>
+    <thead><tr><th>Method</th><th>Basis</th><th>Forecast</th><th>Authors' view</th></tr></thead>
+    <tbody>
+      <tr><td>Statistical</td><td>Past interglacials lasted ~10,000–12,000 years</td><td>Ends within 2,000 years</td><td>Crude, like an insurance table</td></tr>
+      <tr><td>Long-term trend</td><td>~2°C cooling since the <b>Climatic Optimum</b> 7,000 years ago (e.g. Sarnthein's spreading deserts)</td><td>Ice-age cold in ~18,000 years</td><td>Better, but trends can reverse</td></tr>
+      <tr><td>Short-term trend</td><td>J. Murray Mitchell (1963): Northern hemisphere cooling since 1940</td><td>Ice-age levels in ~700 years</td><td>Unreliable: like primitive peoples lighting bonfires against autumn</td></tr>
+      <tr><td>Astronomical</td><td>John Imbrie &amp; John Z. Imbrie model from Berger's orbital curves</td><td>Cooling continues; full glaciation in ~23,000 years</td><td>Most soundly based</td></tr>
+    </tbody>
+  </table></div>
+  <p>Shorter natural cycles are superimposed. The <b>Little Ice Age</b> (~AD 1450–1850, about 1°C cooler; documented by Hubert Lamb and, for colonial America, David Ludlum) was the latest of five Holocene glacier advances found by <b>George Denton and Wibjörn Karlén</b>, suggesting a ~2,500-year cycle, possibly solar. Combining cycles gives a natural forecast of about 1,000 years of warming, then 22,000 years of cooling.</p>
+  <p>Then the "unnatural agent". Burning fossil fuels adds <b>carbon dioxide</b>, which acts as a thermal blanket. Mitchell expected the effect to become noticeable by about 2000 and serious in the next century. Burning most fossil fuel reserves could create a "<b>super-interglacial</b>" warmer than anything in a million years, lasting a thousand years or more, melting parts of Greenland and Antarctica and raising sea level. The next ice age would then be delayed, with cooling not beginning for perhaps 2,000 years.</p>
+  <div class="cols">
+    <div class="box people"><h4>People</h4><dl>
+      <dt>J. Murray Mitchell Jr.</dt><dd>Temperature trends; early CO₂ warming forecasts.</dd>
+      <dt>Hubert Lamb</dt><dd>Historical climate; Little Ice Age.</dd>
+      <dt>George Denton &amp; Wibjörn Karlén</dt><dd>Holocene glacier fluctuations.</dd>
+      <dt>John Imbrie &amp; John Z. Imbrie</dt><dd>Orbital ice-volume forecast model.</dd>
+      <dt>Michael Sarnthein</dt><dd>Desert expansion since the Climatic Optimum.</dd>
+    </dl></div>
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Holocene</dt><dd>Current interglacial, ~10,000 years so far.</dd>
+      <dt>Holocene Climatic Optimum</dt><dd>Warmer, wetter time ~7,000 years ago; green Sahara.</dd>
+      <dt>Little Ice Age</dt><dd>AD 1450–1850 cool episode.</dd>
+      <dt>Trend vs cycle</dt><dd>A trend may be one phase of a cycle; forecast from understood cycles.</dd>
+      <dt>Super-interglacial</dt><dd>CO₂-driven warmth overriding orbital cooling.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>Natural forcing points slowly toward the next glaciation, but human CO₂ is likely to dominate the coming centuries. See the 2026 notes for how this has played out.</p>
+</article>
+
+<article class="ch" id="epilogue">
+  <div class="chhead"><span class="chnum">Epilogue</span><span class="when">1,000,000,000 years ago → today</span></div>
+  <h3>The Last Billion Years of Climate</h3>
+  <p class="question">Why does Earth have ice ages at all, when most of its history was ice-free?</p>
+  <p>Only three times in the last billion years have the poles held large ice sheets. These long <b>glacial ages</b> each contain many individual ice ages: the <b>late Precambrian</b> (~700 million years ago), the <b>Permo-Carboniferous</b> (~300 million years ago), and the <b>Late Cenozoic</b>, the present one, which began ~10 million years ago in the book's account.</p>
+  <p>The likely cause of these long regimes is <b>continental drift</b>. Ice builds up when much land sits near a pole. In the Permo-Carboniferous, the supercontinent <b>Pangaea</b> extended over the South Pole, and the glaciated regions (Brazil, Argentina, South Africa, India, Antarctica, Australia) were all at high southern latitudes. As Pangaea moved north, Earth was warmer than today for some 200 million years. About 55 million years ago the <b>Cenozoic climate decline</b> began. Antarctica separated from Australia and settled over the South Pole, and North America and Eurasia moved toward the North Pole. More high-latitude land meant more reflective snow and cooler climate. In the book's sequence, mountain glaciers and a large Antarctic ice sheet appeared ~10 million years ago, Antarctica expanded ~5 million years ago, and northern hemisphere ice sheets appeared ~3 million years ago. Once those northern ice sheets existed, they were sensitive to the orbital cycles, producing the 100,000-, 41,000- and ~22,000-year rhythms.</p>
+  <div class="cols">
+    <div class="box concepts"><h4>Key concepts</h4><dl>
+      <dt>Glacial age vs ice age</dt><dd>A long regime (millions of years) containing many individual ice ages.</dd>
+      <dt>Continental drift / plate tectonics</dt><dd>Sets the long-term stage by placing land at the poles.</dd>
+      <dt>Pangaea</dt><dd>Late Paleozoic supercontinent.</dd>
+      <dt>Cenozoic cooling</dt><dd>Gradual cooling over the last ~55 million years.</dd>
+    </dl></div>
+    <div class="box people"><h4>Time scales together</h4><dl>
+      <dt>10⁸ years</dt><dd>Continental drift turns glacial ages on and off.</dd>
+      <dt>10⁴–10⁵ years</dt><dd>Orbital cycles pace ice ages within a glacial age.</dd>
+      <dt>10²–10³ years</dt><dd>Little-ice-age cycles, solar, volcanic and human effects.</dd>
+    </dl></div>
+  </div>
+  <p class="take"><b>Takeaway</b>Climate change runs at nested time scales: tectonics sets the stage, orbits pace the ice ages, and shorter processes add the fine detail.</p>
+</article>
+
+<section id="glossary">
+  <h2 class="part">Reference</h2>
+  <h2 class="sec">Key geological concepts, A to Z</h2>
+  <div class="gloss">
+    <div><b>Ablation till</b>: debris dropped as stagnant ice melts. [3]</div>
+    <div><b>Aphelion / perihelion</b>: farthest / nearest orbital point from the sun. [5]</div>
+    <div><b>Axial tilt (obliquity)</b>: 41,000-yr cycle; controls polar summer sunshine. [6, 8]</div>
+    <div><b>Bioturbation</b>: burrowing that blurs sediment records. [15]</div>
+    <div><b>Brunhes–Matuyama boundary</b>: last magnetic reversal, 700,000 yr in the book. [13]</div>
+    <div><b>Catastrophism</b>: history as a series of global catastrophes. [2]</div>
+    <div><b>Climate system</b>: atmosphere, ocean and ice as one solar-powered machine. [4]</div>
+    <div><b>Drift</b>: general term for glacial deposits (till + outwash). [2, 3]</div>
+    <div><b>Eccentricity</b>: orbit shape, ~100,000-yr cycle; modulates precession. [6]</div>
+    <div><b>Erratic</b>: boulder carried far from its source. [1]</div>
+    <div><b>Foraminifera (forams)</b>: plankton with carbonate shells; climate indicators. [10]</div>
+    <div><b>Ice–albedo (radiation) feedback</b>: more ice, more reflection, more cooling. [4, 6]</div>
+    <div><b>Insolation</b>: incoming sunlight by latitude and season. [8]</div>
+    <div><b>Interglacial</b>: warm interval between ice ages. [3, 16]</div>
+    <div><b>Isostasy</b>: crust sinks under ice, rebounds after. [3]</div>
+    <div><b>Isotope stages</b>: numbered warm/cold intervals from δ¹⁸O. [11, 15]</div>
+    <div><b>Lodgement till</b>: debris plastered beneath flowing ice. [3]</div>
+    <div><b>Loess</b>: wind-blown glacial silt. [3, 14]</div>
+    <div><b>Moraine (terminal)</b>: debris ridge at the ice's farthest extent. [3]</div>
+    <div><b>Outwash</b>: sorted meltwater sediment. [3]</div>
+    <div><b>Paleomagnetism</b>: ancient magnetic direction locked in rocks. [13]</div>
+    <div><b>Piston corer</b>: device for long sea-floor cores (1947). [10]</div>
+    <div><b>Pleistocene / Holocene / Quaternary</b>: ice-age epoch / postglacial epoch / both together. [7]</div>
+    <div><b>Pluvial lake</b>: lake swollen by wetter ice-age climate (Bonneville). [3]</div>
+    <div><b>Precession of the equinoxes</b>: ~22,000-yr shift of seasons around the orbit. [5]</div>
+    <div><b>Radiocarbon dating</b>: ¹⁴C decay, reliable to ~40,000 yr. [9]</div>
+    <div><b>Snow budget</b>: snowfall minus melt decides glacier growth. [3]</div>
+    <div><b>Spectral analysis</b>: identifies the cycles in a record. [15]</div>
+    <div><b>Termination</b>: rapid end of a glacial cycle. [14]</div>
+    <div><b>Thorium (U-series) dating</b>: dates corals to ~150,000 yr. [12]</div>
+    <div><b>Transfer function</b>: statistical estimate of past temperature from species mix. [11]</div>
+    <div><b>Turbidity current</b>: underwater sediment avalanche. [10]</div>
+  </div>
+</section>
+
+<section id="modern">
+  <h2 class="part">Beyond the book</h2>
+  <h2 class="sec">Reading it in 2026</h2>
+  <p>The book's history holds up, and its central conclusion (orbital pacing) is now textbook science. Some numbers and forecasts have changed since 1978. These notes come from later research, not from the book. They matter for GEOG 205, especially the course question of whether past natural variations count as evidence against human-caused warming.</p>
+  <div class="note">
+    <h4>Revised numbers</h4>
+    <p><b>Pleistocene start:</b> moved from 1.8 to 2.58 million years ago in 2009, so the Quaternary now begins with the first major northern glaciations.</p>
+    <p><b>Brunhes–Matuyama reversal:</b> now dated to about 780,000 years ago. Ironically the correction came partly from "tuning" sediment records to the orbital cycles, a sign of how well-trusted the theory became.</p>
+    <p><b>Last Glacial Maximum:</b> the book's 18,000 years is in radiocarbon years. Calibrated to calendar years it is roughly 21,000 (the peak is often given as about 26,000–19,000 years ago).</p>
+    <p><b>Antarctic ice:</b> a large Antarctic ice sheet is now dated to about 34 million years ago (Eocene–Oligocene boundary), well before the ~10 million years in the Epilogue. Northern ice sheets grew markedly about 2.7 million years ago. The late Precambrian glaciation is now often discussed as "Snowball Earth".</p>
+    <p><b>Names:</b> Günz–Mindel–Riss–Würm and Nebraskan–Kansan–Illinoian–Wisconsin are no longer used as the global framework. Researchers use Marine Isotope Stages (MIS), descended from Emiliani's numbering.</p>
+  </div>
+  <div class="note">
+    <h4>Still open</h4>
+    <p><b>The 100,000-year problem</b>, flagged at the end of Chapter 15, is still debated: eccentricity's direct effect on sunlight is tiny. Before about 1 million years ago, ice ages followed the 41,000-year tilt cycle, and the switch (the Mid-Pleistocene Transition) is not fully explained. Ice-sheet dynamics and CO₂ feedbacks are leading candidates.</p>
+  </div>
+  <div class="note">
+    <h4>Carbon dioxide and the forecast</h4>
+    <p>Chapter 4 listed CO₂ as "untestable". Antarctic ice cores later showed CO₂ rising and falling with every glacial cycle over 800,000 years, about 180–190 ppm in glacials and ~280 ppm in interglacials. It acts as a major amplifier of the orbital push, not the trigger.</p>
+    <p>Mitchell's 1940s–70s cooling is now largely attributed to sulfate aerosol pollution plus natural variability. Warming resumed in the 1970s, roughly on the schedule Mitchell gave for CO₂ (noticeable by about 2000). Atmospheric CO₂ reached about 430 ppm at its 2025 seasonal peak, higher than at any point in the ice-core record.</p>
+    <p>Because eccentricity is currently low, later orbital models (e.g. Berger &amp; Loutre, 2002) suggest the present interglacial would naturally be unusually long, perhaps another 50,000 years. With today's CO₂, the next glaciation is likely delayed further. The book's 23,000-year natural forecast is now considered too soon.</p>
+    <p><b>For the course question:</b> the book's own logic answers it. Orbital cycles operate over tens of thousands of years and currently point toward very slow cooling, so they cannot explain rapid modern warming. The same evidence that proved natural pacing also shows how strongly CO₂ amplifies climate change.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Source: John Imbrie &amp; Katherine Palmer Imbrie, <i>Ice Ages: Solving the Mystery</i> (Enslow / Macmillan, 1979), including its "Chronology of Discovery" appendix. CO₂ figure: <a href="https://scripps.ucsd.edu/news/annual-carbon-dioxide-peak-passes-another-milestone">Scripps Institution of Oceanography</a>.</p>
+</footer>
+</main>
+</div>
+
+</body></html>
